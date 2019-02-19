@@ -49,7 +49,7 @@ for i in range(len(ChinaCity_name)):
 m = Basemap(llcrnrlon=77, llcrnrlat=14, urcrnrlon=140, urcrnrlat=51, projection='lcc', lat_1=33, lat_2=45, lon_0=100) # 实例化一个map
 m.drawcoastlines()  # 画海岸线
 m.drawcountries()
-m.readshapefile("F:\Code\PycharmProjects\小项目\中国城市分布分析\CHN_SHP\gadm36_CHN_1", 'states', drawbounds=True) #中国省份细分
+m.readshapefile("F:\Code\PycharmProjects\小项目\中国城市分布分析\CHN_SHP\gadm36_CHN_3", 'states', drawbounds=True) #中国省份细分
 
 parallels = np.arange(-90., 90., 10.)  # 这两行画纬度，范围为[-90,90]间隔为10
 m.drawparallels(parallels, labels=[False, True, True, False])
@@ -64,9 +64,9 @@ for ii in range(len(ChinaCity_name)):
     elif QNUM<=510 and QNUM>255:
         r, g, b = (510-QNUM)/255, 255/255, 0
     elif QNUM<=765 and QNUM>510:
-        r, g, b = (QNUM-510)/255, 0, 255/255
+        r, g, b = 0, (QNUM-510)/255, 255/255
     else:
-        r, g, b = 0, (QNUM-765)/255, 255 / 255
+        r, g, b = (QNUM-765)/255, 0, 255 / 255
     color = [[r, g, b]]
     lon, lat = m(ChinaCity_Y[ii], ChinaCity_X[ii])
     m.scatter(lon, lat, s=10, c=color)
